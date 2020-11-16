@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content=""/>
+        <meta name="author" content="Dashboard"/>
+        <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina"/>
+        <title>Askn Soluciones</title>
+
+        <!-- Favicons -->
+        <link href="../img/favicon.png" rel="icon"/>
+        <link href="../img/apple-touch-icon.png" rel="apple-touch-icon"/>
+
+        <!-- Bootstrap core CSS -->
+        <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <!--external css-->
+        <link href="../lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom styles for this template -->
+        <link href="../css/style.css" rel="stylesheet"/>
+        <link href="../css/style-responsive.css" rel="stylesheet"/>
+        
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    </h:head>
+    <h:body>
+
+        <div id="login-page">
+
+            <div class="container">
+                <h:form class="form-login" >
+                    <h2 class="form-login-heading">sign in now</h2>
+
+                    <div class="login-wrap">
+                        <h:inputText  required="true" id="regCorreo" requiredMessage="Ingrese numero de documento" 
+                                      value="#{usuarioSession.correoIn}" class="form-control"  html5:placeholder="Correo"  />   
+                        <h:message style="color: red"  for="regCorreo"></h:message>
+
+                        <br />
+                        <h:inputSecret class="form-control" id="regclave" required="true" requiredMessage="Digite una clave" 
+                                       value="#{usuarioSession.claveIn}"  html5:placeholder="Password"/> 
+                        <h:message style="color: red" for="regclave"></h:message>
+
+                        <br/>
+                        <br/>
+
+                        <h:commandButton action="#{usuarioSession.inicioSeccion()}" class="btn btn-theme btn-block" type="submit" value="Entrar"/>
+                        <br/>
+                        <div class="center-block">
+
+                            <br />
+                            <div class="center-block">
+                                <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Modal -->
+
+                    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+
+                        <div class="modal-dialog">
+
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                                    <h4 class="modal-title">Olvido contraseña?</h4>
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <p>Le enviaremos la información al correo registrado .</p>
+                                    <div class="input-group">
+                                        <h:inputText  required="true" id="regCorreo1" requiredMessage="Ingrese una direccion de correo" 
+                                                      value="#{usuarioRequest.recuperaClave()}" class="form-control"  html5:placeholder="Correo"  />   
+                                        <h:message style="color: red"  for="regCorreo1"></h:message>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                                    <h:commandButton action="#{usuarioRequest.recuperaClave()}" value="Recuperar" class="btn btn-theme" type="button"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal -->
+
+                </h:form>
+            </div>
+        </div>
+        <!-- modal -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+                integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+        <!-- js placed at the end of the document so the pages load faster -->
+        <script src="../lib/jquery/jquery.min.js"></script>
+        <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+        <!--BACKSTRETCH-->
+        <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+        <script type="text/javascript" src="../lib/jquery.backstretch.min.js"></script>
+        <script>
+            $.backstretch("../img/vi6-side_original.jpg", {
+                speed: 500
+            });
+        </script>
+
+    </h:body>
+</html>

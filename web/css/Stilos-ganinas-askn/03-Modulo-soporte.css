@@ -1,0 +1,44 @@
+.card-default {
+    color: #333;
+    font-weight: 1600;
+    border-radius: 5px;
+    margin: 10px;
+    border: 20px;
+    display: block;
+    width:100%;
+    height:auto;
+}
+.titulo{
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(10,149,144,1) 0%, rgba(0,212,255,1) 100%);   color: #fff;
+  margin: 1rem;
+  padding: 1rem;
+  /* IMPORTANTE */
+  text-align: center;
+
+}
+
+.producto{
+    color: rgb(0, 0, 0);
+}
+.form-content{
+}
+.note
+{
+    border:1px solid;
+    text-align:center;
+    height: 80px;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(10,149,144,1) 0%, rgba(0,212,255,1) 100%);   color: #fff;
+    font-weight: bold;
+    line-height: 80px;
+}
+.form-content
+{
+    
+    padding: 2%;
+    border: 1px solid #ced4da;
+    margin-bottom: 2%;
+}
+#main-content {
+    background-color:white;
+    margin-left: 210px;
+}
