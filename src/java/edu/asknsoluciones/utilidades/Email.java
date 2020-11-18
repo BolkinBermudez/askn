@@ -76,8 +76,8 @@ public class Email {
     }
 
     public static void sendClaves(String para, String Nombres, String correoUsu, String clave) {
-        final String user = "adsiwebjava@gmail.com";//cambiará en consecuencia al servidor utilizado
-        final String pass = "adsi2020";
+        final String user = "otisalmado@gmail.com";//cambiará en consecuencia al servidor utilizado
+        final String pass = "elloconegro19";
 
 //1st paso) Obtener el objeto de sesión
         Properties props = new Properties();
@@ -127,8 +127,8 @@ public class Email {
     }
 
     public static void sendBienvenido(String para, String Nombres, String nombUsu, String clave) {
-        final String user = "";//cambiará en consecuencia al servidor utilizado
-        final String pass = "";
+        final String user = "otisalmado@gmail.com";//cambiará en consecuencia al servidor utilizado
+        final String pass = "elloconegro19";
 
 //1st paso) Obtener el objeto de sesión
         Properties props = new Properties();
@@ -151,7 +151,7 @@ public class Email {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(user));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(para));
-            message.setSubject("Bienvenido Banco-Pedagogico");
+            message.setSubject("Bienvenido Askn Soluciones.");
 
             message.setContent(
                     "<center><img src='http://fs5.directupload.net/images/160530/khs5cmdc.jpg' title='Banco Pedagogico'></center>"

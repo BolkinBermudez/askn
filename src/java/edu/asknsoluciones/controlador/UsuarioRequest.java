@@ -15,10 +15,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.persistence.Query;
 import org.primefaces.PrimeFaces;
 
-/**
- *
- * @author Cesar Bernal
- */
+
+
+
 @Named(value = "usuarioRequest")
 @RequestScoped
 public class UsuarioRequest implements Serializable {
