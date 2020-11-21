@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition>
+            <section id="main-content">
+                <section class="wrapper">
+
+                    <div class="row mt mb">
+                        <div class="col-lg-12">
+                            <br/>
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="dmbox">
+                                    <div class="service-icon">
+                                        <a class="" href="#"><i class="dm-icon fa fa-check fa-4x"></i></a>
+                                    </div>
+                                    <h4>1.What can you manage from here? </h4>
+                                    <p>Review the users who are active.</p>
+                                </div>
+                            </div>
+                            <!-- end dmbox -->
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="dmbox">
+                                    <div class="service-icon">
+                                        <a class="" href="#"><i class="dm-icon glyphicon glyphicon-edit fa-3x"></i></a>
+                                    </div>
+                                    <h4>2. What can you manage from here?</h4>
+                                    <p>You can edit the users' pefiles..</p>
+                                </div>
+                            </div>
+                            <!-- end dmbox -->
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <div class="dmbox">
+                                    <div class="service-icon">
+                                        <a class="" href="#"><i class="dm-icon glyphicon glyphicon-remove fa-3x"></i></a>
+                                    </div>
+                                    <h4>3. What can you manage from here?</h4>
+                                    <p>You can permanently disable or delete any of the users.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row content-panel">
+                        <h2 class="centered">Setting up Users</h2>
+                        <div class="col-lg-12 col-md-8 col-sm-12">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h4>Profile Admin</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-10 col-sm-12">
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-body">
+                                                    <div class="col-sm-6 ">
+                                                        <div class="form-horizontal">
+                                                            <label class="col-xs-6 control-label">company :</label>
+                                                            <p class="form-control-static">Danzafe S.A.s</p>
+                                                            <label class="col-xs-6 control-label"> Perfil:</label>
+                                                            <p class="form-control-static">Administrator </p>
+                                                            <label class="col-xs-6 control-label">Id:</label>
+                                                            <p class="form-control-static">Cesar Bernal Macias</p>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <a class='btn btn-info ' data-toggle="modal" data-target="#modalForm"><span
+                                                    class="glyphicon glyphicon-plus" data-toggle="modal" data-target="#modalForm"></span> Crear
+                                                usuario</a>
+                                            <br/>
+                                            <br/>
+
+                                        </div>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="modalForm" role="dialog">
+                                            <div class="modal-dialog ">
+                                                <div class="modal-content">
+                                                    <!-- Modal Cabecera -->
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">
+                                                            <span aria-hidden="true">X</span>
+                                                            <span class="sr-only">to close</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="myModalLabel">Contact Form</h4>
+                                                    </div>
+                                                    <h:form id="miForm" > <!-- Modal Cuerpo contenido -->
+                                                        <div class="modal-body ">
+                                                            <p class="statusMsg"></p>
+                                                            <div class="form-group">
+                                                                <label for="inputName">names</label>
+                                                                <h:inputText id="Regnombre" required="true" requiredMessage="enter name " value="#{usuarioRequest.objUsuario.nombres}" class="form-control" html5:placeholder="names"/>
+                                                                <h:message style="color: red" for="Regnombre"></h:message>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="inputSarname">Sarname </label>
+                                                                <h:inputText id="Regapellidos" required="true" requiredMessage="enter surnames " value="#{usuarioRequest.objUsuario.apellidos}" class="form-control" html5:placeholder="Sarnames"/>
+                                                                <h:message style="color: red" for="Regapellidos"></h:message>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="inputDocumento">document </label>
+                                                                <h:inputText id="Regdocumento" required="true" requiredMessage="enter document " value="#{usuarioRequest.objUsuario.documento}" class="form-control" html5:placeholder="document"/>
+                                                                <h:message style="color: red" for="Regdocumento"></h:message>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <h:selectOneMenu value="#{usuarioRequest.objUsuario.tipoDocumento}">Select document
+                                                                    <f:selectItem itemLabel="Cedula" itemValue="Cedula"></f:selectItem>
+                                                                    <f:selectItem itemLabel="Pasaporte" itemValue="Pasaporte"></f:selectItem>
+                                                                    <f:selectItem itemLabel="Cedula Ex" itemValue="Cedula Ex"></f:selectItem>
+                                                                </h:selectOneMenu>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="inputDocumento">Mail </label>
+                                                                <h:inputText id="Regmail" required="true" requiredMessage="enter mail " value="#{usuarioRequest.objUsuario.correo}" class="form-control" html5:placeholder="mail"/>
+                                                                <h:message style="color: red" for="Remail"></h:message>
+                                                            </div>
+                                                            
+                                                            <div class="form-group">
+                                                                <label for="inputpass">password </label>
+                                                                <h:inputText id="Regpass" required="true" requiredMessage="enter pass " value="#{usuarioRequest.objUsuario.correo}" class="form-control" html5:placeholder="pass"/>
+                                                                <h:message style="color: red" for="Regpass"></h:message>
+                                                            </div>
+
+                                                          <div class="form-group">
+                                                                <h:selectOneMenu value="#{usuarioRequest.objUsuario.tipoDocumento}">Select document
+                                                                    <f:selectItem itemLabel="Admimistrador " itemValue="Administrador"></f:selectItem>
+                                                                    <f:selectItem itemLabel="Vendedor " itemValue="Vendedor"></f:selectItem>
+                                                                    <f:selectItem itemLabel="Coodinador bodega " itemValue="Coordinador bodega"></f:selectItem>
+                                                                    <f:selectItem itemLabel="Soporte tenico " itemValue="Cedula Ex"></f:selectItem>
+                                                                </h:selectOneMenu>
+                                                            </div>
+
+                                                        </div>
+
+
+                                                        <button type="submit" id="crear" class="btn btn-theme" onclick="nuevo()">Create</button>
+                                                        <button type="button" class="btn btn-theme04" data-dismiss="modal">Cancel</button>
+
+
+                                                    </h:form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <h:form>
+                            <table class="table table-striped custab ">
+                                <thead>
+                                    <tr class="bg-info">
+
+                                        <th class="text-center">Names</th>
+                                        <th class="text-center">Surnames</th>
+                                        <th class="text-center">type of documentsape</th>
+                                        <th class="text-center">Document</th>
+                                        <th class="text-center">Mail</th>
+                                        <th class="text-center">Options</th>
+                                    </tr>
+                                </thead>
+
+
+                                <tbody>
+                                    <c:forEach items="#{administradorView.listaUsuarios}" var="usu">
+                                        <tr>
+                                            <td class="text-center">#{usu.nombres}</td> 
+                                            <td class="text-center">#{usu.apellidos}</td>
+                                            <td class="text-center">#{usu.tipoDocumento}</td>
+                                            <td class="text-center">#{usu.documento} </td>
+                                            <td class="text-center">#{usu.correo}</td>
+                                            <td>
+                                                <c:if test="#{usu.documento != usuarioSession.usuLogin.documento}">
+                                                    <h:commandButton  action="#{administradorView.cargaUsuarioEditar(usu)}" style="margin-right: 10px"
+                                                                      class="btn btn-warning text-center" onclick="$('#btnModal').click();" value="Editar">
+                                                        <f:ajax render=":formModal"></f:ajax>
+                                                    </h:commandButton>
+                                                    <h:commandButton action="#{administradorView.removerUsuario(usu)}" class="btn btn-danger text-center" value="Remover">
+                                                    </h:commandButton>
+                                                </c:if>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>    
+                                </tbody>
+                            </table>
+
+                        </h:form>
+                    </div>               
+
+
+                </section>
+            </section>
+
+
+
+
+
+
+        </ui:composition>
+    </h:body>
+
+
+
+
+</html>
