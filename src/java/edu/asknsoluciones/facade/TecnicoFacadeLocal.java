@@ -5,7 +5,7 @@
  */
 package edu.asknsoluciones.facade;
 
-import edu.asknsoluciones.entity.Rol;
+import edu.asknsoluciones.entity.Tecnico;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author Bolkin B
  */
 @Local
-public interface RolFacadeLocal {
+public interface TecnicoFacadeLocal {
 
-    void create(Rol rol);
+    void create(Tecnico tecnico);
 
-    void edit(Rol rol);
+    void edit(Tecnico tecnico);
 
-    void remove(Rol rol);
+    void remove(Tecnico tecnico);
 
-    Rol find(Object id);
+    Tecnico find(Object id);
 
-    List<Rol> findAll();
+    List<Tecnico> findAll();
 
-    List<Rol> findRange(int[] range);
+    List<Tecnico> findRange(int[] range);
 
     int count();
     

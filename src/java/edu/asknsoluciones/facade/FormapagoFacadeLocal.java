@@ -5,7 +5,7 @@
  */
 package edu.asknsoluciones.facade;
 
-import edu.asknsoluciones.entity.Rol;
+import edu.asknsoluciones.entity.Formapago;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author Bolkin B
  */
 @Local
-public interface RolFacadeLocal {
+public interface FormapagoFacadeLocal {
 
-    void create(Rol rol);
+    void create(Formapago formapago);
 
-    void edit(Rol rol);
+    void edit(Formapago formapago);
 
-    void remove(Rol rol);
+    void remove(Formapago formapago);
 
-    Rol find(Object id);
+    Formapago find(Object id);
 
-    List<Rol> findAll();
+    List<Formapago> findAll();
 
-    List<Rol> findRange(int[] range);
+    List<Formapago> findRange(int[] range);
 
     int count();
     

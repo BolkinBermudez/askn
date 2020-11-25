@@ -5,7 +5,7 @@
  */
 package edu.asknsoluciones.facade;
 
-import edu.asknsoluciones.entity.Rol;
+import edu.asknsoluciones.entity.Vendedor;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Bolkin B
  */
 @Stateless
-public class RolFacade extends AbstractFacade<Rol> implements RolFacadeLocal {
+public class VendedorFacade extends AbstractFacade<Vendedor> implements VendedorFacadeLocal {
 
     @PersistenceContext(unitName = "Asknsoluciones2020PU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class RolFacade extends AbstractFacade<Rol> implements RolFacadeLocal {
         return em;
     }
 
-    public RolFacade() {
-        super(Rol.class);
+    public VendedorFacade() {
+        super(Vendedor.class);
     }
     
 }

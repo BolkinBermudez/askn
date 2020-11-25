@@ -13,7 +13,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Cesar Bernal
+ * @author Bolkin B
  */
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFacadeLocal {
@@ -29,7 +29,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     public UsuarioFacade() {
         super(Usuario.class);
     }
-
+    
     @Override
     public Usuario recuperarClave(String correoIn) {
 
@@ -39,7 +39,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
             return (Usuario) qt.getSingleResult();
         } catch (Exception e) {
             return new Usuario();
-        }
+}
     }
     
     @Override

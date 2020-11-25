@@ -10,6 +10,7 @@ import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,19 +22,22 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Cesar Bernal
+ * @author Bolkin B
  */
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuario", catalog = "asknsoluciones2020", schema = "")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")})
@@ -46,22 +50,24 @@ public class Usuario implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "nombres")
     private String nombres;
     @Basic(optional = false)
-
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "apellidos")
     private String apellidos;
-
+    @Size(max = 20)
     @Column(name = "tipoDocumento")
     private String tipoDocumento;
     @Column(name = "documento")
     private BigInteger documento;
-
+    @Size(max = 50)
     @Column(name = "correo")
     private String correo;
-
+    @Size(max = 10)
     @Column(name = "clave")
     private String clave;
     @Column(name = "fechaRegistro")
@@ -75,6 +81,12 @@ public class Usuario implements Serializable {
         @JoinColumn(name = "idRol", referencedColumnName = "id")})
     @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Rol> rolCollection;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario", fetch = FetchType.LAZY)
+    private Vendedor vendedor;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
+    private Collection<Tecnico> tecnicoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
+    private Collection<Coordinadorbodega> coordinadorbodegaCollection;
 
     public Usuario() {
     }
@@ -168,6 +180,32 @@ public class Usuario implements Serializable {
 
     public void setRolCollection(Collection<Rol> rolCollection) {
         this.rolCollection = rolCollection;
+    }
+
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
+    }
+
+    @XmlTransient
+    public Collection<Tecnico> getTecnicoCollection() {
+        return tecnicoCollection;
+    }
+
+    public void setTecnicoCollection(Collection<Tecnico> tecnicoCollection) {
+        this.tecnicoCollection = tecnicoCollection;
+    }
+
+    @XmlTransient
+    public Collection<Coordinadorbodega> getCoordinadorbodegaCollection() {
+        return coordinadorbodegaCollection;
+    }
+
+    public void setCoordinadorbodegaCollection(Collection<Coordinadorbodega> coordinadorbodegaCollection) {
+        this.coordinadorbodegaCollection = coordinadorbodegaCollection;
     }
 
     @Override
