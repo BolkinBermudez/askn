@@ -6,8 +6,10 @@
 package edu.asknsoluciones.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,11 +20,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -34,6 +38,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Cotizacion.findAll", query = "SELECT c FROM Cotizacion c")})
 public class Cotizacion implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCotizacion", fetch = FetchType.LAZY)
+    private Collection<Detallecotizacion> detallecotizacionCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -147,6 +154,15 @@ public class Cotizacion implements Serializable {
     @Override
     public String toString() {
         return "edu.asknsoluciones.entity.Cotizacion[ idCorizacion=" + idCorizacion + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Detallecotizacion> getDetallecotizacionCollection() {
+        return detallecotizacionCollection;
+    }
+
+    public void setDetallecotizacionCollection(Collection<Detallecotizacion> detallecotizacionCollection) {
+        this.detallecotizacionCollection = detallecotizacionCollection;
     }
     
 }

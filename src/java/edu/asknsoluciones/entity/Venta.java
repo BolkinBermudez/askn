@@ -6,8 +6,10 @@
 package edu.asknsoluciones.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,11 +20,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -34,6 +38,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Venta.findAll", query = "SELECT v FROM Venta v")})
 public class Venta implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta", fetch = FetchType.LAZY)
+    private Collection<Detalleventa> detalleventaCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -155,6 +162,15 @@ public class Venta implements Serializable {
     @Override
     public String toString() {
         return "edu.asknsoluciones.entity.Venta[ idVenta=" + idVenta + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Detalleventa> getDetalleventaCollection() {
+        return detalleventaCollection;
+    }
+
+    public void setDetalleventaCollection(Collection<Detalleventa> detalleventaCollection) {
+        this.detalleventaCollection = detalleventaCollection;
     }
     
 }

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body>
+        <ui:composition>
+            <section id="main-content">
+                <section class="wrapper">
+                    <div class="row">
+                        <div class="col-lg-9 main-chart">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong class="text-center "><h4 class="mt-2">Lista de Productos</h4></strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <h:form>
+                                            <table id="bootstrap-data-table" class="table table-striped custab">
+                                                <thead class="bg-info">
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>NOMBRE</th>
+                                                        <th>DESCRIPCIÓN </th>
+                                                        <th>ID PROVEEDOR</th>
+                                                        <th>CANTIDAD</th>
+                                                        <th>VALOR</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <c:forEach items="#{coorBodegaView.listaProductos}" var="pro">
+                                                        <tr>
+                                                            <td>#{pro.idProducto}</td> 
+                                                            <td>#{pro.nombre}</td>
+                                                            <td>#{pro.descripcion}</td>
+                                                            <td>#{pro.idProveedor}</td>
+                                                            <td>#{pro.cantidad}</td>
+                                                            <td>#{pro.valorUnid}</td>
+                                                            <td>
+                                                                
+                                                                <h:commandButton  action="#{coorBodegaView.cargaProductoEditar(pro)}" style="margin-right: 10px" class="btn btn-warning" onclick="$('#btnModal').click();" value="Editar">
+                                                                        <f:ajax render=":formProModal"></f:ajax>
+                                                                    </h:commandButton>
+                                                                <h:commandButton action="#{coorBodegaView.removerProducto(pro)}" class="btn btn-danger" value="Remover">
+                                                                    </h:commandButton>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>    
+                                                </tbody>
+                                            </table>
+                                        </h:form>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <div  class="col-md-8">
+
+                                        </div>
+                               
+                                        <div  class="col-md-2">
+                                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#mediumModal">
+                                                Crear Usuario
+                                            </button>
+
+                                            <button type="button" style="display: none" id="btnModal" class="btn btn-info" data-toggle="modal" data-target="#actualizarModal">
+                                                actualiza Usuario
+                                            </button>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="modal fade" id="actualizarModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="mediumModalLabel">Actualizar Producto</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">;</span>
+                                            </button>
+                                        </div>
+                                        <h:form id="formProModal">
+                                            <div class="modal-body">
+
+                                                <div class="form-group">
+                                                    <label>Nombre Producto</label>
+                                                    <h:inputText id="regNombre" required="true" requiredMessage="Ingrese el nombre del producto" value="#{coorBodegaView.proReg.nombre}" class="form-control" html5:placeholder="Nombre Producto"/>
+                                                    <h:message style="color: red" for="regNombre"></h:message>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label>Descripción </label>
+                                                    <h:inputTextarea required="true" id="regDes" requiredMessage="Ingrese la descripción del producto"  value="#{coorBodegaView.proReg.descripcion}" class="form-control" html5:placeholder="Nombres"/>
+                                                    <h:message style="color: red" for="regDes"></h:message>
+                                                </div>
+
+
+
+                                                <div class="form-group">
+                                                    <label>Proveedor </label>
+                                                    <h:selectOneMenu  value="#{coorBodegaView.proReg.idProveedor}"  class="form-control">
+                                                        <f:selectItem itemLabel="proveedor 1" itemValue="1"></f:selectItem>
+                                                        <f:selectItem itemLabel="proveedor 2" itemValue="2"></f:selectItem>
+                                                        <f:selectItem itemLabel="proveedor 3" itemValue="3"></f:selectItem>
+                                                        <f:selectItem itemLabel="proveedor 4" itemValue="4"></f:selectItem>
+                                                    </h:selectOneMenu>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Cantidad</label>
+                                                    <h:inputText required="true"  requiredMessage="Ingrese la  " id="regCorreo" value="#{coorBodegaView.proReg.cantidad}" class="form-control" html5:placeholder="Cantidad"/>
+                                                    <h:message style="color: red" for="regCorreo"></h:message>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Valor  Unidad</label>
+                                                    <h:inputSecret required="true" requiredMessage="Ingrese una clave" id="regClave"  value="#{coorBodegaView.proReg.valorUnid}" class="form-control" html5:placeholder="Valor Unidad"/>
+                                                    <h:message style="color: red" for="regClave"></h:message>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                <h:commandButton action="#{coorBodegaView.editarProducto()}"  class="btn btn-primary btn-flat m-b-30 m-t-30" value="Actualizar"/>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="mediumModalLabel">Registro producto nuevo</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                        <h:form id="formModal">
+                                            <div class="modal-body">
+
+                                                <div class="form-group">
+                                                    <label>Nombre Producto</label>
+                                                    <h:inputText id="regNombre" required="true" requiredMessage="Ingrese el nombre del producto" value="#{coorBodegaView.proReg.nombre}" class="form-control" html5:placeholder="Nombre Producto"/>
+                                                    <h:message style="color: red" for="regNombre"></h:message>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label>Descripción </label>
+                                                    <h:inputTextarea required="true" id="regDes" requiredMessage="Ingrese la descripción del producto"  value="#{coorBodegaView.proReg.descripcion}" class="form-control" html5:placeholder="Nombres"/>
+                                                    <h:message style="color: red" for="regDes"></h:message>
+                                                </div>
+
+
+
+                                                <div class="form-group">
+                                                    <label>Proveedor </label>
+                                                    <h:selectOneMenu  value="#{coorBodegaView.proReg.idProveedor}"  class="form-control">
+                                                        <f:selectItem itemLabel="proveedor 1" itemValue="1"></f:selectItem>
+                                                        <f:selectItem itemLabel="proveedor 2" itemValue="2"></f:selectItem>
+                                                        <f:selectItem itemLabel="proveedor 3" itemValue="3"></f:selectItem>
+                                                        <f:selectItem itemLabel="proveedor 4" itemValue="4"></f:selectItem>
+                                                    </h:selectOneMenu>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Cantidad</label>
+                                                    <h:inputText required="true"  requiredMessage="Ingrese la  " id="regCorreo" value="#{coorBodegaView.proReg.cantidad}" class="form-control" html5:placeholder="Cantidad"/>
+                                                    <h:message style="color: red" for="regCorreo"></h:message>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Valor  Unidad</label>
+                                                    <h:inputSecret required="true" requiredMessage="Ingrese una clave" id="regClave"  value="#{coorBodegaView.proReg.valorUnid}" class="form-control" html5:placeholder="Valor Unidad"/>
+                                                    <h:message style="color: red" for="regClave"></h:message>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                <h:commandButton action="#{coorBodegaView.crearProducto()}"  class="btn btn-primary btn-flat m-b-30 m-t-30" value="Actualizar"/>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- /col-lg-3 -->
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </section>
+            </section>
+        </ui:composition>
+    </h:body>
+</html>
