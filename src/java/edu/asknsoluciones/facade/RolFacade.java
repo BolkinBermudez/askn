@@ -29,4 +29,5 @@ public class RolFacade extends AbstractFacade<Rol> implements RolFacadeLocal {
         super(Rol.class);
     }
     
+    
 }

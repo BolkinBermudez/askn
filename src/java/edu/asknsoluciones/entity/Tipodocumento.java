@@ -43,7 +43,7 @@ public class Tipodocumento implements Serializable {
     private Integer idTipoDoc;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
+    @Size(min = 1, max = 25)
     @Column(name = "tipoDoc")
     private String tipoDoc;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoDoc", fetch = FetchType.LAZY)

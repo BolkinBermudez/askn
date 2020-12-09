@@ -18,12 +18,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -76,17 +74,15 @@ public class Usuario implements Serializable {
     @Column(name = "ultimoIngreso")
     @Temporal(TemporalType.TIMESTAMP)
     private Date ultimoIngreso;
-    @JoinTable(name = "usuario_rol", joinColumns = {
-        @JoinColumn(name = "idUsuario", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "idRol", referencedColumnName = "id")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Collection<Rol> rolCollection;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario", fetch = FetchType.LAZY)
-    private Vendedor vendedor;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
+    private Collection<Vendedor> vendedorCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
     private Collection<Tecnico> tecnicoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario", fetch = FetchType.LAZY)
     private Collection<Coordinadorbodega> coordinadorbodegaCollection;
+    @JoinColumn(name = "idRol", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Rol idRol;
 
     public Usuario() {
     }
@@ -174,20 +170,12 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Rol> getRolCollection() {
-        return rolCollection;
+    public Collection<Vendedor> getVendedorCollection() {
+        return vendedorCollection;
     }
 
-    public void setRolCollection(Collection<Rol> rolCollection) {
-        this.rolCollection = rolCollection;
-    }
-
-    public Vendedor getVendedor() {
-        return vendedor;
-    }
-
-    public void setVendedor(Vendedor vendedor) {
-        this.vendedor = vendedor;
+    public void setVendedorCollection(Collection<Vendedor> vendedorCollection) {
+        this.vendedorCollection = vendedorCollection;
     }
 
     @XmlTransient
@@ -206,6 +194,14 @@ public class Usuario implements Serializable {
 
     public void setCoordinadorbodegaCollection(Collection<Coordinadorbodega> coordinadorbodegaCollection) {
         this.coordinadorbodegaCollection = coordinadorbodegaCollection;
+    }
+
+    public Rol getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(Rol idRol) {
+        this.idRol = idRol;
     }
 
     @Override

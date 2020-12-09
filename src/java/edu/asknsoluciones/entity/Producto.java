@@ -40,11 +40,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p")})
 public class Producto implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto", fetch = FetchType.LAZY)
-    private Collection<Detalleventa> detalleventaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto", fetch = FetchType.LAZY)
-    private Collection<Detallecotizacion> detallecotizacionCollection;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,8 +48,9 @@ public class Producto implements Serializable {
     private Integer idProducto;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 60)
     @Column(name = "nombre")
-    private int nombre;
+    private String nombre;
     @Size(max = 200)
     @Column(name = "descripcion")
     private String descripcion;
@@ -71,17 +67,21 @@ public class Producto implements Serializable {
     @NotNull
     @Column(name = "valorUnid")
     private double valorUnid;
+    @OneToMany(mappedBy = "idProducto", fetch = FetchType.LAZY)
+    private Collection<Detalleventa> detalleventaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto", fetch = FetchType.LAZY)
+    private Collection<Detallecotizacion> detallecotizacionCollection;
     @JoinColumn(name = "idEstadoProducto", referencedColumnName = "idEstadoProducto")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Estadoproducto idEstadoProducto;
     @JoinColumn(name = "idProveedor", referencedColumnName = "idProveedor")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Proveedor idProveedor;
     @JoinColumn(name = "idMarca", referencedColumnName = "IdMarca")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Marca idMarca;
     @JoinColumn(name = "idTipo", referencedColumnName = "idTipo")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Tipoproducto idTipo;
 
     public Producto() {
@@ -91,7 +91,7 @@ public class Producto implements Serializable {
         this.idProducto = idProducto;
     }
 
-    public Producto(Integer idProducto, int nombre, int cantidad, Date fechaIngreso, double valorUnid) {
+    public Producto(Integer idProducto, String nombre, int cantidad, Date fechaIngreso, double valorUnid) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.cantidad = cantidad;
@@ -107,11 +107,11 @@ public class Producto implements Serializable {
         this.idProducto = idProducto;
     }
 
-    public int getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(int nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -145,6 +145,24 @@ public class Producto implements Serializable {
 
     public void setValorUnid(double valorUnid) {
         this.valorUnid = valorUnid;
+    }
+
+    @XmlTransient
+    public Collection<Detalleventa> getDetalleventaCollection() {
+        return detalleventaCollection;
+    }
+
+    public void setDetalleventaCollection(Collection<Detalleventa> detalleventaCollection) {
+        this.detalleventaCollection = detalleventaCollection;
+    }
+
+    @XmlTransient
+    public Collection<Detallecotizacion> getDetallecotizacionCollection() {
+        return detallecotizacionCollection;
+    }
+
+    public void setDetallecotizacionCollection(Collection<Detallecotizacion> detallecotizacionCollection) {
+        this.detallecotizacionCollection = detallecotizacionCollection;
     }
 
     public Estadoproducto getIdEstadoProducto() {
@@ -202,24 +220,6 @@ public class Producto implements Serializable {
     @Override
     public String toString() {
         return "edu.asknsoluciones.entity.Producto[ idProducto=" + idProducto + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Detalleventa> getDetalleventaCollection() {
-        return detalleventaCollection;
-    }
-
-    public void setDetalleventaCollection(Collection<Detalleventa> detalleventaCollection) {
-        this.detalleventaCollection = detalleventaCollection;
-    }
-
-    @XmlTransient
-    public Collection<Detallecotizacion> getDetallecotizacionCollection() {
-        return detallecotizacionCollection;
-    }
-
-    public void setDetallecotizacionCollection(Collection<Detallecotizacion> detallecotizacionCollection) {
-        this.detallecotizacionCollection = detallecotizacionCollection;
     }
     
 }

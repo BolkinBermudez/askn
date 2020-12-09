@@ -5,7 +5,9 @@ package edu.asknsoluciones.controlador;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import edu.asknsoluciones.entity.Rol;
 import edu.asknsoluciones.entity.Usuario;
+import edu.asknsoluciones.facade.RolFacadeLocal;
 import edu.asknsoluciones.facade.UsuarioFacade;
 import edu.asknsoluciones.facade.UsuarioFacadeLocal;
 import javax.inject.Named;
@@ -25,9 +27,14 @@ public class UsuarioSession implements Serializable {
 
     @EJB
     UsuarioFacadeLocal usuarioFacadeLocal;
+    @EJB
+    RolFacadeLocal rolFacadeLocal;
 
     private String correoIn = "";
     private String claveIn = "";
+    private int idRol= 0;
+    
+    private Rol objRol = new Rol();
     private Usuario usuLogin = new Usuario();
 
     public UsuarioSession() {
@@ -55,8 +62,13 @@ public class UsuarioSession implements Serializable {
             if (usuLogin.getId() == null) {
                 mensajeSw = "swal('El usuario' , ' No se encuentra registrado  ', 'error')";
             } else {
-                FacesContext fc = FacesContext.getCurrentInstance();
-                fc.getExternalContext().redirect("miperfil/Template.xhtml");
+                
+                
+               
+                if(usuLogin.getIdRol().equals(objRol.getId())){
+                    FacesContext fc = FacesContext.getCurrentInstance();
+                    fc.getExternalContext().redirect(objRol.getRuta());
+                }
             }
 
         } catch (Exception e) {
@@ -88,6 +100,21 @@ public class UsuarioSession implements Serializable {
 
     public void setUsuLogin(Usuario usuLogin) {
         this.usuLogin = usuLogin;
+    }
+    public int getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
+    }
+
+    public Rol getObjRol() {
+        return objRol;
+    }
+
+    public void setObjRol(Rol objRol) {
+        this.objRol = objRol;
     }
 
 }

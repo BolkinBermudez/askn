@@ -9,6 +9,7 @@ import edu.asknsoluciones.entity.Cliente;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +29,16 @@ public class ClienteFacade extends AbstractFacade<Cliente> implements ClienteFac
     public ClienteFacade() {
         super(Cliente.class);
     }
-    
+
+    @Override
+    public Cliente BuscarIdCliente(int numDocCli) {
+        try {
+            Query qt = em.createQuery("SELECT * FROM `cliente` WHERE `numDocumento` =:numDocCli");
+            qt.setParameter("numDocumento", numDocCli);
+            return (Cliente) qt.getSingleResult();
+        } catch (Exception e) {
+            return new Cliente();
+        }
+
+    }
 }

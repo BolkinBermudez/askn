@@ -42,6 +42,7 @@ public class UsuarioRequest implements Serializable {
         objUsuario = new Usuario();
         PrimeFaces.current().executeScript(mensajeSw);
     }
+    
 
     public void recuperaClave() {
         Usuario usuRecuperar = new Usuario();

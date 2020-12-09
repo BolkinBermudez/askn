@@ -30,4 +30,5 @@ public interface ClienteFacadeLocal {
 
     int count();
     
+    public Cliente BuscarIdCliente(int numDocCli);
 }

@@ -39,9 +39,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cotizacion.findAll", query = "SELECT c FROM Cotizacion c")})
 public class Cotizacion implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCotizacion", fetch = FetchType.LAZY)
-    private Collection<Detallecotizacion> detallecotizacionCollection;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,6 +59,10 @@ public class Cotizacion implements Serializable {
     @NotNull
     @Column(name = "total")
     private double total;
+    @OneToMany(mappedBy = "idCotizacion", fetch = FetchType.LAZY)
+    private Collection<Detalleventa> detalleventaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCotizacion", fetch = FetchType.LAZY)
+    private Collection<Detallecotizacion> detallecotizacionCollection;
     @JoinColumn(name = "idCliente", referencedColumnName = "idCliente")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Cliente idCliente;
@@ -115,6 +116,24 @@ public class Cotizacion implements Serializable {
         this.total = total;
     }
 
+    @XmlTransient
+    public Collection<Detalleventa> getDetalleventaCollection() {
+        return detalleventaCollection;
+    }
+
+    public void setDetalleventaCollection(Collection<Detalleventa> detalleventaCollection) {
+        this.detalleventaCollection = detalleventaCollection;
+    }
+
+    @XmlTransient
+    public Collection<Detallecotizacion> getDetallecotizacionCollection() {
+        return detallecotizacionCollection;
+    }
+
+    public void setDetallecotizacionCollection(Collection<Detallecotizacion> detallecotizacionCollection) {
+        this.detallecotizacionCollection = detallecotizacionCollection;
+    }
+
     public Cliente getIdCliente() {
         return idCliente;
     }
@@ -154,15 +173,6 @@ public class Cotizacion implements Serializable {
     @Override
     public String toString() {
         return "edu.asknsoluciones.entity.Cotizacion[ idCorizacion=" + idCorizacion + " ]";
-    }
-
-    @XmlTransient
-    public Collection<Detallecotizacion> getDetallecotizacionCollection() {
-        return detallecotizacionCollection;
-    }
-
-    public void setDetallecotizacionCollection(Collection<Detallecotizacion> detallecotizacionCollection) {
-        this.detallecotizacionCollection = detallecotizacionCollection;
     }
     
 }

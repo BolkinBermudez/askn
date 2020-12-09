@@ -29,7 +29,7 @@ public interface UsuarioFacadeLocal {
     List<Usuario> findRange(int[] range);
 
     int count();
-
+    
     public Usuario recuperarClave(String correoRecuperar);
     
     public Usuario loginUsuario(String correo, String clave);

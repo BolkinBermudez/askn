@@ -6,7 +6,6 @@
 package edu.asknsoluciones.facade;
 
 import edu.asknsoluciones.entity.Detalleventa;
-import edu.asknsoluciones.entity.Producto;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -30,7 +29,5 @@ public interface DetalleventaFacadeLocal {
     List<Detalleventa> findRange(int[] range);
 
     int count();
-
-    public void remove(Producto proRem);
     
 }

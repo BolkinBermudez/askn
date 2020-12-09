@@ -33,29 +33,27 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Detalleventa implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "cantidad")
-    private int cantidad;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "subTotal")
-    private float subTotal;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "idCotizacion")
-    private int idCotizacion;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idDetalleVenta")
     private Integer idDetalleVenta;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "cantidad")
+    private int cantidad;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "subTotal")
+    private Float subTotal;
     @JoinColumn(name = "IdVenta", referencedColumnName = "IdVenta")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Venta idVenta;
     @JoinColumn(name = "idProducto", referencedColumnName = "idProducto")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Producto idProducto;
+    @JoinColumn(name = "idCotizacion", referencedColumnName = "idCorizacion")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Cotizacion idCotizacion;
 
     public Detalleventa() {
     }
@@ -64,11 +62,17 @@ public class Detalleventa implements Serializable {
         this.idDetalleVenta = idDetalleVenta;
     }
 
-    public Detalleventa(Integer idDetalleVenta, int cantidad, float subTotal, int idCotizacion) {
+    public Detalleventa(Integer idDetalleVenta, int cantidad) {
         this.idDetalleVenta = idDetalleVenta;
         this.cantidad = cantidad;
-        this.subTotal = subTotal;
-        this.idCotizacion = idCotizacion;
+    }
+
+    public Integer getIdDetalleVenta() {
+        return idDetalleVenta;
+    }
+
+    public void setIdDetalleVenta(Integer idDetalleVenta) {
+        this.idDetalleVenta = idDetalleVenta;
     }
 
     public int getCantidad() {
@@ -79,28 +83,12 @@ public class Detalleventa implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public float getSubTotal() {
+    public Float getSubTotal() {
         return subTotal;
     }
 
-    public void setSubTotal(float subTotal) {
+    public void setSubTotal(Float subTotal) {
         this.subTotal = subTotal;
-    }
-
-    public int getIdCotizacion() {
-        return idCotizacion;
-    }
-
-    public void setIdCotizacion(int idCotizacion) {
-        this.idCotizacion = idCotizacion;
-    }
-
-    public Integer getIdDetalleVenta() {
-        return idDetalleVenta;
-    }
-
-    public void setIdDetalleVenta(Integer idDetalleVenta) {
-        this.idDetalleVenta = idDetalleVenta;
     }
 
     public Venta getIdVenta() {
@@ -117,6 +105,14 @@ public class Detalleventa implements Serializable {
 
     public void setIdProducto(Producto idProducto) {
         this.idProducto = idProducto;
+    }
+
+    public Cotizacion getIdCotizacion() {
+        return idCotizacion;
+    }
+
+    public void setIdCotizacion(Cotizacion idCotizacion) {
+        this.idCotizacion = idCotizacion;
     }
 
     @Override

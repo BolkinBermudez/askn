@@ -39,9 +39,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Venta.findAll", query = "SELECT v FROM Venta v")})
 public class Venta implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta", fetch = FetchType.LAZY)
-    private Collection<Detalleventa> detalleventaCollection;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,12 +50,11 @@ public class Venta implements Serializable {
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    @Basic(optional = false)
-    @NotNull
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "total")
-    private float total;
+    private Float total;
     @JoinColumn(name = "idFormaPago", referencedColumnName = "IdFormaPago")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Formapago idFormaPago;
     @JoinColumn(name = "idEstado", referencedColumnName = "idEstado")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -69,6 +65,8 @@ public class Venta implements Serializable {
     @JoinColumn(name = "idVendedor", referencedColumnName = "IdVendedor")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Vendedor idVendedor;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta", fetch = FetchType.LAZY)
+    private Collection<Detalleventa> detalleventaCollection;
 
     public Venta() {
     }
@@ -77,10 +75,9 @@ public class Venta implements Serializable {
         this.idVenta = idVenta;
     }
 
-    public Venta(Integer idVenta, Date fecha, float total) {
+    public Venta(Integer idVenta, Date fecha) {
         this.idVenta = idVenta;
         this.fecha = fecha;
-        this.total = total;
     }
 
     public Integer getIdVenta() {
@@ -99,11 +96,11 @@ public class Venta implements Serializable {
         this.fecha = fecha;
     }
 
-    public float getTotal() {
+    public Float getTotal() {
         return total;
     }
 
-    public void setTotal(float total) {
+    public void setTotal(Float total) {
         this.total = total;
     }
 
@@ -139,6 +136,15 @@ public class Venta implements Serializable {
         this.idVendedor = idVendedor;
     }
 
+    @XmlTransient
+    public Collection<Detalleventa> getDetalleventaCollection() {
+        return detalleventaCollection;
+    }
+
+    public void setDetalleventaCollection(Collection<Detalleventa> detalleventaCollection) {
+        this.detalleventaCollection = detalleventaCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -164,13 +170,6 @@ public class Venta implements Serializable {
         return "edu.asknsoluciones.entity.Venta[ idVenta=" + idVenta + " ]";
     }
 
-    @XmlTransient
-    public Collection<Detalleventa> getDetalleventaCollection() {
-        return detalleventaCollection;
-    }
-
-    public void setDetalleventaCollection(Collection<Detalleventa> detalleventaCollection) {
-        this.detalleventaCollection = detalleventaCollection;
-    }
+    
     
 }

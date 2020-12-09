@@ -8,7 +8,6 @@ package edu.asknsoluciones.entity;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,7 +45,7 @@ public class Marca implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "marca")
     private String marca;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMarca", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idMarca", fetch = FetchType.LAZY)
     private Collection<Producto> productoCollection;
 
     public Marca() {

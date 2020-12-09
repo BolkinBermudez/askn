@@ -15,56 +15,74 @@ and open the template in the editor.
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"/>
     <h:body>
         <ui:composition>
+            <!-- **********************************************************************************************************************************************************
+         MAIN CONTENT
+         *********************************************************************************************************************************************************** -->
+            <!--main content start-->
             <section id="main-content">
-                <section class="wrapper">
-                    <div class="row">
-                        <div class="col-lg-12 main-chart">
-                            <strong class="text-center "><h2>Modulo Ventas</h2></strong>
+                <section class="wrapper site-min-height">
+                    <div class="row mt">
+                        <div class="col-lg-12">
 
-                            <div class="col-lg-12 main-chart">
-                                <div class="card col-sm-12 ">
-
-                                    <div class="card-header">
-
-                                    </div>
-                                    <div class="card-body d-flex ">
-                                        <h:form >
+                            <div class="note">
+                                <h2 class="text-center" >
+                                    <p>Create new sale</p>
+                                </h2>
+                            </div>
+                            <div class="row content-panel">
+                                <div class="col-md-8 profile-text mt mb centered">
+                                    <h:form>
+                                        <div class="col-md-8">
                                             <div class="form-group ">
                                                 <div class="col-sm-12 d-flex  ">
-                                                    <label><h5>Datos del Cliente</h5> </label>
+                                                    <label>
+                                                        <h5>Datos del Cliente</h5>
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="form-group ">
                                                 <div class="col-sm-4 d-flex  ">
-                                                    <h:inputText id="regDocumento" required="true" requiredMessage="Ingrese un numero de documento" value="scritlet" class="form-control" html5:placeholder="Numero documento"/>
+                                                    <h:inputText id="regDocumento" required="true"
+                                                                 requiredMessage="Ingrese un numero de documento"
+                                                                 value="#{ventaView.numDocCli}" class="form-control"
+                                                                 html5:placeholder="Numero documento" />
 
                                                 </div>
 
                                                 <div class="col-sm-2 d-flex  ">
-                                                    <h:commandButton action="scritlet"  class="btn btn-primary btn-flat" value="Buscar"/>
+                                                    <h:commandButton action="#{ventaView.recuperarIdCliente()}"
+                                                                     class="btn btn-info btn-flat" value="Buscar" />
                                                 </div>
 
                                                 <div class="col-sm-6 d-flex">
-                                                    <h:inputText id="nombreCliente"   value="scritlet" class="form-control" html5:placeholder="Nombre del CLiente"/>
+                                                    <h:inputText id="nombreCliente" value="#{ventaView.objCliente.nombres}" class="form-control"
+                                                                 html5:placeholder="Nombre del CLiente" />
 
                                                 </div>
                                             </div>
                                             <div class="form-group ">
                                                 <div class="col-sm-12 d-flex  ">
-                                                    <label><h5>Datos del producto</h5> </label>
+                                                    <label>
+                                                        <h5>Datos del producto</h5>
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="form-group  ">
                                                 <div class="col-sm-4 d-flex  ">
-                                                    <h:inputText id="regDocumento" required="true" requiredMessage="Ingrese un numero de documento" value="scritlet" class="form-control" html5:placeholder="Numero documento"/>
+                                                    <h:inputText id="regDocumento" required="true"
+                                                                 requiredMessage="Ingrese un numero de documento" value="scritlet" class="form-control"
+                                                                 html5:placeholder="Numero documento" />
+                                                    <h:message style="color: red" for="regDocumento"></h:message>
                                                 </div>
 
                                                 <div class="col-sm-2 d-flex  ">
-                                                    <h:commandButton action="scritlet"  class="btn btn-primary btn-flat" value="Buscar"/>
+                                                    <h:commandButton action="scritlet" class="btn btn-info btn-flat" value="Buscar" />
                                                 </div>
 
                                                 <div class="col-sm-6 d-flex">
-                                                    <h:inputText id="nombreCliente"   value="scritlet" class="form-control" html5:placeholder="Nombre del CLiente"/>
+                                                    <h:inputText id="nombreCliente" value="scritlet" class="form-control"
+                                                                 html5:placeholder="Nombre del CLiente" />
+                                                    
 
                                                 </div>
                                             </div>
@@ -72,19 +90,22 @@ and open the template in the editor.
                                             <div class="form-group ">
 
                                                 <div class="col-sm-6 d-flex  ">
-                                                    <br/>
-                                                    <h:inputText id="regDocumento"  value="scritlet" class="form-control" html5:placeholder="Precio"/>
+                                                    <br />
+                                                    <h:inputText id="regDocumento" value="scritlet" class="form-control"
+                                                                 html5:placeholder="Precio" />
 
                                                 </div>
 
                                                 <div class="col-sm-3 d-flex  ">
-                                                    <br/>
-                                                    <h:inputText id="regDocumento"   value="scritlet" class="form-control" html5:placeholder="Cantidad"/>
+                                                    <br />
+                                                    <h:inputText id="regDocumento" value="scritlet" class="form-control"
+                                                                 html5:placeholder="Cantidad" />
                                                 </div>
 
                                                 <div class="col-sm-3 d-flex">
-                                                    <br/>
-                                                    <h:inputText id="nombreCliente"   value="scritlet" class="form-control" html5:placeholder="Stock"/>
+                                                    <br />
+                                                    <h:inputText id="nombreCliente" value="scritlet" class="form-control"
+                                                                 html5:placeholder="Stock" />
                                                     <br></br>
                                                 </div>
 
@@ -94,94 +115,68 @@ and open the template in the editor.
                                             <div class="form-group  mt-2 ">
                                                 <div class="col-sm-12">
                                                     <h:message style="color: red" for="regDocumento"></h:message>
-                                                    <h:commandButton action="scritlet" class="btn btn-primary btn-flat" value="Agregar"/>
+                                                    <h:commandButton action="scritlet" class="btn btn-info btn-flat" value="Agregar" />
                                                 </div>
                                             </div>
-                                            
-                                                    <div class="card">
-                                                        <div class="card-header">
-                                                            <strong class="text-center "><h4 class="mt-2">Lista de Clientes</h4></strong>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <h:form>
-                                                                <table id="bootstrap-data-table" class="table table-striped custab">
-                                                                    <thead class="bg-info">
-                                                                        <tr>
-                                                                            <th>Nombres</th>
-                                                                            <th>Apellidos</th>
-                                                                            <th>Tipo documento </th>
-                                                                            <th> documento</th>
-                                                                            <th>Correo</th>
-                                                                            <th>Dirección</th>
-                                                                            <th>Teléfono</th>
-                                                                            <th></th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
+                                        </div>
+                                        <div class="col-md-4 detailed">
+                                            <strong class="text-center ">
+                                                <h4 class="mt-2">Detalle De venta</h4>
+                                            </strong>
+                                            <div class="pull-right mail-src-position">
+                                                <h:inputText  value="scritlet" class="form-control "
+                                                                 html5:placeholder="Numero de venta" />
+                                            </div>
+                                            <table id="bootstrap-data-table" class="table table-striped custab">
+                                                <thead class="bg-info">
+                                                    <tr>
+                                                        <th>Nombre producto</th>
+                                                        <th>Apellidos</th>
+                                                        <th>Tipo documento </th>
+                                                        <th> documento</th>
+                                                        <th>Correo</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
-                                                                        <c:forEach items="#{vendedorView.listaClientes}" var="cli">
-                                                                            <tr>
-                                                                                <td>#{cli.nombres}</td> 
-                                                                                <td>#{cli.apellidos}</td>
-                                                                                <td>#{cli.idTipoDoc}</td>
-                                                                                <td> #{cli.numDocumento} </td>
-                                                                                <td>#{cli.correo}</td>
-                                                                                <td>#{cli.direccion}</td>
-                                                                                <td>#{cli.telefono}</td>
-                                                                                <td>
-                                                                                    <c:if test="#{cli.numDocumento != vendedorView.cliReg.numDocumento}">
-                                                                                        <h:commandButton  action="#{vendedorView.cargaClienteEditar(cli)}" style="margin-right: 10px" class="btn btn-warning" onclick="$('#btnModal').click();" value="Editar">
-                                                                                            <f:ajax render=":formModal"></f:ajax>
-                                                                                        </h:commandButton>
-                                                                                        <h:commandButton action="#{vendedorView.removerCliente(cli)}" class="btn btn-danger" value="Remover">
-                                                                                        </h:commandButton>
-                                                                                    </c:if>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </c:forEach>    
-                                                                    </tbody>
-                                                                </table>
-                                                            </h:form>
-                                                        </div>
-                                                        <hr/>
-                                                        <div class="row">
-                                                            <div  class="col-md-8">
-
-                                                            </div>
-
-                                                            <div  class="col-md-2">
-                                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#mediumModal">
-                                                                    Crear cliente
-                                                                </button>
-
-                                                                <button type="button" style="display: none" id="btnModal" class="btn btn-info" data-toggle="modal" data-target="#actualizarClienteModal">
-                                                                    actualiza cliente
-                                                                </button>
-
-                                                            </div>
-
-
-                                                        </div>
-
-
-                                                    </div>
-
-
-                                                
-                                                <!-- /row -->
-                                            
-                                        </h:form>
-                                    </div>
-                                    
-                                </div>
-
-                                <!-- /col-lg-3 -->
+                                                    <c:forEach items="#{administradorView.listaUsuarios}" var="usu">
+                                                        <tr>
+                                                            <td>#{usu.nombres}</td>
+                                                            <td>#{usu.apellidos}</td>
+                                                            <td>#{usu.tipoDocumento}</td>
+                                                            <td> #{usu.documento} </td>
+                                                            <td>#{usu.correo}</td>
+                                                            <td>
+                                                                
+                                                                    <p:commandButton action="#{administradorView.cargaUsuarioEditar(usu)}"
+                                                                                     style="margin-right: 10px" class="btn btn-warning "
+                                                                                     onclick="$('#btnModal').click();"  icon="fa fa-pencil" >
+                                                                        <f:ajax render=":formModal"></f:ajax>
+                                                                        
+                                                                    </p:commandButton>
+                                                                    <p:commandButton action="#{administradorView.removerUsuario(usu)}"
+                                                                                     class="btn btn-danger" icon="fa fa-trash-o">
+                                                                    </p:commandButton>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </h:form>
+                                </div>  
                             </div>
                         </div>
-                        </div>
+                        <!-- /col-lg-12 -->
+                    </div>
+                    <!-- /row -->
                 </section>
-
+                <!-- /wrapper -->
             </section>
+            <!-- /MAIN CONTENT -->
+            <!--main content end-->
         </ui:composition>
     </h:body>
 </html>

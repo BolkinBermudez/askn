@@ -44,14 +44,6 @@ public class Ordenservisio implements Serializable {
     private Integer idOrdenServisio;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "idCliente")
-    private int idCliente;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "idMarca")
-    private int idMarca;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "codProducto")
     private int codProducto;
     @Basic(optional = false)
@@ -70,12 +62,18 @@ public class Ordenservisio implements Serializable {
     @Column(name = "fechaFin")
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
+    @Size(max = 60)
+    @Column(name = "marca")
+    private String marca;
     @JoinColumn(name = "IdTecnico", referencedColumnName = "idTecnico")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Tecnico idTecnico;
     @JoinColumn(name = "idEstadoOS", referencedColumnName = "IdEstadoOS")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Estadoordenservisio idEstadoOS;
+    @JoinColumn(name = "idCliente", referencedColumnName = "idCliente")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Cliente idCliente;
 
     public Ordenservisio() {
     }
@@ -84,10 +82,8 @@ public class Ordenservisio implements Serializable {
         this.idOrdenServisio = idOrdenServisio;
     }
 
-    public Ordenservisio(Integer idOrdenServisio, int idCliente, int idMarca, int codProducto, String descripcionFalla, Date fechaIngreso) {
+    public Ordenservisio(Integer idOrdenServisio, int codProducto, String descripcionFalla, Date fechaIngreso) {
         this.idOrdenServisio = idOrdenServisio;
-        this.idCliente = idCliente;
-        this.idMarca = idMarca;
         this.codProducto = codProducto;
         this.descripcionFalla = descripcionFalla;
         this.fechaIngreso = fechaIngreso;
@@ -99,22 +95,6 @@ public class Ordenservisio implements Serializable {
 
     public void setIdOrdenServisio(Integer idOrdenServisio) {
         this.idOrdenServisio = idOrdenServisio;
-    }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public int getIdMarca() {
-        return idMarca;
-    }
-
-    public void setIdMarca(int idMarca) {
-        this.idMarca = idMarca;
     }
 
     public int getCodProducto() {
@@ -157,6 +137,14 @@ public class Ordenservisio implements Serializable {
         this.fechaFin = fechaFin;
     }
 
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
     public Tecnico getIdTecnico() {
         return idTecnico;
     }
@@ -171,6 +159,14 @@ public class Ordenservisio implements Serializable {
 
     public void setIdEstadoOS(Estadoordenservisio idEstadoOS) {
         this.idEstadoOS = idEstadoOS;
+    }
+
+    public Cliente getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Cliente idCliente) {
+        this.idCliente = idCliente;
     }
 
     @Override

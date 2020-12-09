@@ -16,13 +16,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -43,16 +41,9 @@ public class Vendedor implements Serializable {
     @Basic(optional = false)
     @Column(name = "IdVendedor")
     private Integer idVendedor;
-    @Size(max = 45)
-    @Column(name = "sede")
-    private String sede;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "idUsuario")
-    private int idUsuario;
-    @JoinColumn(name = "IdVendedor", referencedColumnName = "id", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
-    private Usuario usuario;
+    @JoinColumn(name = "idUsuario", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Usuario idUsuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVendedor", fetch = FetchType.LAZY)
     private Collection<Venta> ventaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVendedor", fetch = FetchType.LAZY)
@@ -65,11 +56,6 @@ public class Vendedor implements Serializable {
         this.idVendedor = idVendedor;
     }
 
-    public Vendedor(Integer idVendedor, int idUsuario) {
-        this.idVendedor = idVendedor;
-        this.idUsuario = idUsuario;
-    }
-
     public Integer getIdVendedor() {
         return idVendedor;
     }
@@ -78,28 +64,12 @@ public class Vendedor implements Serializable {
         this.idVendedor = idVendedor;
     }
 
-    public String getSede() {
-        return sede;
-    }
-
-    public void setSede(String sede) {
-        this.sede = sede;
-    }
-
-    public int getIdUsuario() {
+    public Usuario getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(Usuario idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     @XmlTransient

@@ -6,11 +6,9 @@
 package edu.asknsoluciones.facade;
 
 import edu.asknsoluciones.entity.Detalleventa;
-import edu.asknsoluciones.entity.Producto;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
@@ -29,19 +27,6 @@ public class DetalleventaFacade extends AbstractFacade<Detalleventa> implements 
 
     public DetalleventaFacade() {
         super(Detalleventa.class);
-    }
-
-    @Override
-    public void remove(Producto proRem) {
-        try {
-            //aqui  qry para  eliminar  producto de  detalle  venta
-            Query q = em.createQuery("SELECT p FROM detalleventa  WHERE p.idProducto = proRem");
-            
-            
-        } catch (Exception e) {
-            //debe  retornar algo
-            return ;
-        }
     }
     
 }

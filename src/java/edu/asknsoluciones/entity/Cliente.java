@@ -37,15 +37,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")})
 public class Cliente implements Serializable {
 
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "numDocumento")
-    private long numDocumento;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "telefono")
-    private long telefono;
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,6 +53,10 @@ public class Cliente implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "apellidos")
     private String apellidos;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "numDocumento")
+    private long numDocumento;
     @Size(max = 45)
     @Column(name = "correo")
     private String correo;
@@ -70,8 +65,14 @@ public class Cliente implements Serializable {
     @Size(min = 1, max = 40)
     @Column(name = "direccion")
     private String direccion;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "telefono")
+    private long telefono;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente", fetch = FetchType.LAZY)
     private Collection<Venta> ventaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente", fetch = FetchType.LAZY)
+    private Collection<Ordenservisio> ordenservisioCollection;
     @JoinColumn(name = "idTipoDoc", referencedColumnName = "idTipoDoc")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Tipodocumento idTipoDoc;
@@ -85,7 +86,7 @@ public class Cliente implements Serializable {
         this.idCliente = idCliente;
     }
 
-    public Cliente(Integer idCliente, String nombres, String apellidos, int numDocumento, String direccion, int telefono) {
+    public Cliente(Integer idCliente, String nombres, String apellidos, long numDocumento, String direccion, long telefono) {
         this.idCliente = idCliente;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -118,6 +119,13 @@ public class Cliente implements Serializable {
         this.apellidos = apellidos;
     }
 
+    public long getNumDocumento() {
+        return numDocumento;
+    }
+
+    public void setNumDocumento(long numDocumento) {
+        this.numDocumento = numDocumento;
+    }
 
     public String getCorreo() {
         return correo;
@@ -135,6 +143,13 @@ public class Cliente implements Serializable {
         this.direccion = direccion;
     }
 
+    public long getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(long telefono) {
+        this.telefono = telefono;
+    }
 
     @XmlTransient
     public Collection<Venta> getVentaCollection() {
@@ -143,6 +158,15 @@ public class Cliente implements Serializable {
 
     public void setVentaCollection(Collection<Venta> ventaCollection) {
         this.ventaCollection = ventaCollection;
+    }
+
+    @XmlTransient
+    public Collection<Ordenservisio> getOrdenservisioCollection() {
+        return ordenservisioCollection;
+    }
+
+    public void setOrdenservisioCollection(Collection<Ordenservisio> ordenservisioCollection) {
+        this.ordenservisioCollection = ordenservisioCollection;
     }
 
     public Tipodocumento getIdTipoDoc() {
@@ -185,22 +209,6 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         return "edu.asknsoluciones.entity.Cliente[ idCliente=" + idCliente + " ]";
-    }
-
-    public long getNumDocumento() {
-        return numDocumento;
-    }
-
-    public void setNumDocumento(long numDocumento) {
-        this.numDocumento = numDocumento;
-    }
-
-    public long getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(long telefono) {
-        this.telefono = telefono;
     }
     
 }

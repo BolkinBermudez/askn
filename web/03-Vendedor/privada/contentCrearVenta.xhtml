@@ -12,14 +12,10 @@ and open the template in the editor.
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
+
     <body>
         <section id="main-content" class="main-content">
-            <script>
-                .main - content{
-                background - color: FFFFFF;
-                }
 
-            </script>
             <section class="wrapper site-min-height">
                 <div class="row mt">
                     <div class="col-lg-12">
@@ -31,286 +27,210 @@ and open the template in the editor.
                                     </h2>
                                 </div>
                                 <br/>
-                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#mediumModal">Create customer</button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#mediumModal" >Create customer</button>
                                 <br/>
-                                <div class="form-content col-lg-12">
-                                    <div class="row">
-                                        <!-- INLINE FORM ELELEMNTS -->
-                                        <div class="row mt ">
-                                            <div class="col-lg-12 d-flex ">
-                                                <div class="form-panel  ">
-                                                    <h4 class="mb text-center"><i class="fa fa-address-book "></i> CUSTOMER DATA</h4>
-                                                    <h:form class="form-inline " role="form">
-                                                        <div class="form-group  d-flex  col-md-3">
+                                <div class="card-header">
 
-                                                        </div>
-                                                        <div class="form-group  d-flex ">
-                                                            <label class="sr-only" for="documento">Document Nº</label>
-                                                            <input type="text" class="form-control" id="documento" placeholder="customer document "/>
-                                                        </div>
-
-                                                        <button type="submit" class="btn btn-theme ">Find</button>
-                                                        <div class="form-group  d-flex ">
-                                                            <label class="sr-only" for="nameCus">Name Customer</label>
-                                                            <input type="text" class="form-control" id="nameCus" placeholder="Name customer" disabled=""/>
-                                                        </div>
-                                                    </h:form>
-                                                    <br/>
-                                                    <h4 class="mb text-center"><i class="fa fa-barcode"></i> PRODUCT DATA</h4>
-                                                    <h:form class="form-inline" role="form">
-                                                        <div class="form-group  d-flex  col-md-3">
-
-                                                        </div>
-                                                        <div class="form-group">
-
-                                                            <label class="sr-only" for="IdProduct">Id Product</label>
-                                                            <input type="text" class="form-control" id="IdProduct" placeholder=" Product id"/>
-
-
-                                                        </div>
-
-                                                        <button type="submit" class="btn btn-theme">Find</button>
-                                                        <div class="form-group">
-                                                            <label class="sr-only" for="nameCus">Name Product</label>
-                                                            <input type="text" class="form-control" id="nameCus" placeholder="Name Product" disabled=""/>
-                                                        </div>
-                                                    </h:form>
-                                                    <br/>
-
-                                                    <h:form class="form-inline" role="form">
-                                                        <div class="form-group  d-flex  col-md-3">
-
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="sr-only" for="valor">Value</label>
-                                                            <h:inputText  class="form-control" id="valor" value="#{}"html5:placeholder=" Product id"/>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="sr-only" for="cantidad">Quantity</label>
-                                                            <input type="number" class="form-control" min="0"  max="" id="cantidad" placeholder=""></input>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label class="sr-only" for="stock">Stock</label>
-                                                            <input type="text" class="form-control" id="stock" placeholder="Name Product" disabled=""/>
-                                                        </div>
-                                                    </h:form>
-                                                    <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-lg" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="mediumModalLabel">Registro usuario nuevo</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true"></span>
-                                                                    </button>
-                                                                </div>
-                                                                <h:form >
-                                                                    <div class="modal-body">
-
-
-                                                                        <div class="form-group">
-                                                                            <label>Tipo de documento </label>
-                                                                            <h:selectOneMenu  value="#{administradorView.usReg.tipoDocumento}"  class="form-control">
-                                                                                <f:selectItem itemLabel="Cedula" itemValue="Cedula"></f:selectItem>
-                                                                                <f:selectItem itemLabel="T. Identidad" itemValue="T. Identidad"></f:selectItem>
-                                                                                <f:selectItem itemLabel="Pasaporte" itemValue="Pasaporte"></f:selectItem>
-                                                                                <f:selectItem itemLabel="Cedula Ex" itemValue="Cedula Ex"></f:selectItem>
-                                                                            </h:selectOneMenu>
-
-                                                                        </div>
-
-
-                                                                        <div class="form-group">
-                                                                            <label>Numero documento </label>
-                                                                            <h:inputText id="regDocumento" required="true" requiredMessage="Ingrese un numero de documento" value="#{administradorView.usReg.documento}" class="form-control" html5:placeholder="Numero documento"/>
-                                                                            <h:message style="color: red" for="regDocumento"></h:message>
-                                                                        </div>
-
-
-                                                                        <div class="form-group">
-                                                                            <label>Nombres </label>
-                                                                            <h:inputText required="true" requiredMessage="Ingrese sus nombres" id="regNombres" value="#{administradorView.usReg.nombres}" class="form-control" html5:placeholder="Nombres"/>
-                                                                            <h:message style="color: red" for="regNombres"></h:message>
-                                                                        </div>
-
-
-
-                                                                        <div class="form-group">
-                                                                            <label>Apellidos </label>
-                                                                            <h:inputText required="true" requiredMessage="Ingrese sus apellidos" id="regApellidos" value="#{administradorView.usReg.apellidos}" class="form-control" html5:placeholder="Apellidos"/>
-                                                                            <h:message style="color: red" for="regApellidos"></h:message>
-                                                                        </div>
-
-                                                                        <div class="form-group">
-                                                                            <label>Dirección de correo electrónico</label>
-                                                                            <h:inputText required="true"  requiredMessage="Ingrese un correo" id="regCorreo" value="#{administradorView.usReg.correo}" class="form-control" html5:placeholder="Correo electrónico"/>
-                                                                            <h:message style="color: red" for="regCorreo"></h:message>
-                                                                        </div>
-
-                                                                        <div class="form-group">
-                                                                            <label>Clave</label>
-                                                                            <h:inputSecret required="true" requiredMessage="Ingrese una clave" id="regClave"  value="#{administradorView.usReg.clave}" class="form-control" html5:placeholder="Clave"/>
-                                                                            <h:message style="color: red" for="regClave"></h:message>
-                                                                        </div>
-
-
-
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                                                        <h:commandButton action="#{administradorView.crearUsuario()}"  class="btn btn-info btn-flat m-b-30 m-t-30" value="Registrar"/>
-                                                                    </div>
-                                                                </h:form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- /form-panel -->
+                                </div>
+                                <div class="card-body d-flex ">
+                                    <h:form >
+                                        <div class="form-group ">
+                                            <div class="col-sm-12 d-flex  ">
+                                                <label><h5>Customer Data </h5> </label>
                                             </div>
-                                            <!-- /col-lg-12 -->
                                         </div>
-                                        <!-- /row -->
+                                        <div class="form-group ">
+                                            <div class="col-sm-4 d-flex  ">
+                                                <h:inputText id="regDocumento" required="true" requiredMessage="Ingrese un numero de documento" value="#{ventaView.numDocCli}" class="form-control" html5:placeholder="Numero documento"/>
 
-                                    </div>
+                                            </div>
+
+                                            <div class="col-sm-2 d-flex  ">
+                                                <h:commandButton action="#{ventaView.recuperarIdCliente()}"  class="btn btn-primary btn-flat" value="Buscar"/>
+                                            </div>
+
+                                            <div class="col-sm-6 d-flex">
+                                                <h:inputText id="nombreCliente"   value="#{ventaView.objCliente.nombres}" class="form-control" html5:placeholder="Nombre del CLiente"/>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <div class="col-sm-12 d-flex  ">
+                                                <label><h5>Datos del producto</h5> </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group  ">
+                                            <div class="col-sm-4 d-flex  ">
+                                                <h:inputText id="regDocumento" required="true" requiredMessage="Ingrese un numero de documento" value="scritlet" class="form-control" html5:placeholder="Numero documento"/>
+                                            </div>
+
+                                            <div class="col-sm-2 d-flex  ">
+                                                <h:commandButton action="scritlet"  class="btn btn-primary btn-flat" value="Buscar"/>
+                                            </div>
+
+                                            <div class="col-sm-6 d-flex">
+                                                <h:inputText id="nombreCliente"   value="scritlet" class="form-control" html5:placeholder="Nombre del CLiente"/>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group ">
+
+                                            <div class="col-sm-6 d-flex  ">
+                                                <br/>
+                                                <h:inputText id="regDocumento"  value="scritlet" class="form-control" html5:placeholder="Precio"/>
+
+                                            </div>
+
+                                            <div class="col-sm-3 d-flex  ">
+                                                <br/>
+                                                <h:inputText id="regDocumento"   value="scritlet" class="form-control" html5:placeholder="Cantidad"/>
+                                            </div>
+
+                                            <div class="col-sm-3 d-flex">
+                                                <br/>
+                                                <h:inputText id="nombreCliente"   value="scritlet" class="form-control" html5:placeholder="Stock"/>
+                                                <br></br>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group  mt-2 ">
+                                            <div class="col-sm-12">
+                                                <h:message style="color: red" for="regDocumento"></h:message>
+                                                <h:commandButton action="scritlet" class="btn btn-primary btn-flat" value="Agregar"/>
+                                            </div>
+                                            <hr/>
+
+                                        </div>
+                                        <div class="col-md-12 detailed">
+
+                                            <strong class="text-center ">
+                                                <h4 class="mt-2">Detalle De venta</h4>
+                                            </strong>
+                                            <hr/>
+                                            <div class="pull-right mail-src-position">
+                                                <h:inputText  value="scritlet" class="form-control "
+                                                              html5:placeholder="Numero de venta" />
+                                            </div>
+
+                                            <table id="bootstrap-data-table" class="table table-striped custab">
+
+                                                <thead class="bg-info">
+                                                    <tr>
+                                                        <th>producto</th>
+                                                        <th>cantidad</th>
+                                                        <th>sub total </th>
+
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <c:forEach items="#{vendedorView.listaDetalleventa}" var="dv">
+                                                        <tr>
+                                                            <td>#{dv.idProducto.nombre}</td>
+                                                            <td>#{dv.cantidad}</td>
+                                                            <td>#{dv.subTotal}</td>
+
+                                                            <td>
+
+                                                                <p:commandButton action="#{vendedorView.cargaDetalleVentaEditar(detVenEditar)}"
+                                                                                 style="margin-right: 10px" class="btn btn-warning "
+                                                                                 onclick="$('#btnModal').click();"  icon="fa fa-pencil" >
+                                                                    <f:ajax render=":formModal"></f:ajax>
+
+                                                                </p:commandButton>
+                                                                <p:commandButton action="#{vendedorView.removerDetalleVenta(detVenRem)}"
+                                                                                 class="btn btn-danger" icon="fa fa-trash-o">
+                                                                </p:commandButton>
+
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </h:form>
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
                         <br/>
+
                     </div>
+
                 </div>
 
-
-
-                <div class="col-lg-12 d-flex">
-                    <div class="form-panel">
-                        <div class="col-lg-12">
-                            <table class="table table-bordered table-hover " id="tab_logic" method="get" onsubmit="return validat(this)">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center"> # </th>
-                                        <th class="text-center col-lg-2"> Product </th>
-                                        <th class="text-center"> Details </th>
-                                        <th class="text-center"> Quantity </th>
-                                        <th class="text-center"> Unit price </th>
-                                        <th class="text-center"> Total </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr id='addr0'>
-                                        <td>1</td>
-                                        <td><input class="form-control " type="text" placeholder="Buscar productos" aria-label="Search"/>
-                                            <span class="input-group-btn add-on "/>
-                                        </td>
-                                        <td><input type="text" id="nombrep" name='qty[]' placeholder='' class="form-control qty " step="0"
-                                                   min="0" /></td>
-                                        <td><input type="number" id="detallesp" name='price[]' placeholder='' class="form-control price"
-                                                   step="0.00" min="0" /></td>
-                                        <td><input type="number" id="precio" name='price[]' placeholder='' class="form-control price"
-                                                   step="0.00" min="0" /></td>
-                                        <td><input type="number" id="total" name='total[]' placeholder='0.00' class="form-control total"
-                                                   readonly="" /></td>
-                                    </tr>
-                                    <tr id='addr1'></tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-
-                        <div class="row clearfix">
-
-                            <div class="col-lg-3 boton1  ">
-
-                                <div class="col-lg-6">
-                                    <button id="add_row" class="btn btn-default pull-left btn btn-theme ">Add row </button>
-                                </div>
-                                <div>
-                                    <button id='delete_row' class="pull-left btn btn-default btn btn-theme04  ">Delete Row</button>
-                                    <style>
-                                        .boton1 {}
-                                    </style>
-                                </div>
-
+                <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="mediumModalLabel">Registro usuario nuevo</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span>
+                                </button>
                             </div>
-                            <div class="row clearfix" style="margin-top:60px">
-
-                                <div class="pull-right col-md-3">
-                                    <table class="table table-bordered table-hover" id="tab_logic_total">
-                                        <tbody>
-                                            <tr>
-                                                <th class="text-center">Subtotal</th>
-                                                <td class="text-center"><input type="number" name='sub_total' placeholder='0.00'
-                                                                               class="form-control" id="sub_total" readonly="" /></td>
-                                            </tr>
-
-                                            <tr>
-                                                <th class="text-center">VAT</th>
-                                                <td class="text-center">
-                                                    <div class="input-group mb-2 mb-sm-0">
-                                                        <input type="number" class="form-control" id="tax" placeholder="0"/>
-                                                        <div class="input-group-addon">%</div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <th class="text-center"> Total</th>
-                                                <td class="text-center"><input type="number" name='total_amount' id="total_amount"
-                                                                               placeholder='0.00' class="form-control" readonly="" /></td>
-                                            </tr>
-                                            <div class="row clearfix col-lg-offset-4 col ">
-
-                                            </div>
-
-                                        </tbody>
-
-                                    </table>
+                            <h:form >
+                                <div class="modal-body">
 
 
-                                </div>
-                            </div>
-                            <div class="form-group col-md-12 mb-6 col text-center  etailed mt">
-                                <button type=" button" class=" btn btn-theme   " data-toggle="modal" data-target="#exampleModal"><i
-                                        class="fa fa-download fa-sm text-white-20"></i> Create order</button>
+                                    <div class="form-group">
+                                        <label>Tipo de documento </label>
+                                        <h:selectOneMenu  value="#{administradorView.usReg.tipoDocumento}"  class="form-control">
+                                            <f:selectItem itemLabel="Cedula" itemValue="Cedula"></f:selectItem>
+                                            <f:selectItem itemLabel="T. Identidad" itemValue="T. Identidad"></f:selectItem>
+                                            <f:selectItem itemLabel="Pasaporte" itemValue="Pasaporte"></f:selectItem>
+                                            <f:selectItem itemLabel="Cedula Ex" itemValue="Cedula Ex"></f:selectItem>
+                                        </h:selectOneMenu>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                     aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">You want to generate the order </h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true"></span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                When creating the order, it will be saved and sent directly to (ORDERS)
-                                                <p>do you want to generate it?</p>
-
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-theme04 " data-dismiss="modal"><i
-                                                        class="fa fa-times fa-sm "></i> Cancelar</button>
-                                                <a href="02-Solicitud de pedido.html"><button type="button" class="btn btn-theme"><i
-                                                            cal="" class="fa fa-download fa-sm text-white-20"></i>Crear</button></a>
-                                            </div>
-                                        </div>
                                     </div>
+
+
+                                    <div class="form-group">
+                                        <label>Numero documento </label>
+                                        <h:inputText id="regDocumento" required="true" requiredMessage="Ingrese un numero de documento" value="#{administradorView.usReg.documento}" class="form-control" html5:placeholder="Numero documento"/>
+                                        <h:message style="color: red" for="regDocumento"></h:message>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label>Nombres </label>
+                                        <h:inputText required="true" requiredMessage="Ingrese sus nombres" id="regNombres" value="#{administradorView.usReg.nombres}" class="form-control" html5:placeholder="Nombres"/>
+                                        <h:message style="color: red" for="regNombres"></h:message>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label>Apellidos </label>
+                                        <h:inputText required="true" requiredMessage="Ingrese sus apellidos" id="regApellidos" value="#{administradorView.usReg.apellidos}" class="form-control" html5:placeholder="Apellidos"/>
+                                        <h:message style="color: red" for="regApellidos"></h:message>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Dirección de correo electrónico</label>
+                                        <h:inputText required="true"  requiredMessage="Ingrese un correo" id="regCorreo" value="#{administradorView.usReg.correo}" class="form-control" html5:placeholder="Correo electrónico"/>
+                                        <h:message style="color: red" for="regCorreo"></h:message>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Clave</label>
+                                        <h:inputSecret required="true" requiredMessage="Ingrese una clave" id="regClave"  value="#{administradorView.usReg.clave}" class="form-control" html5:placeholder="Clave"/>
+                                        <h:message style="color: red" for="regClave"></h:message>
+                                    </div>
+
+
+
                                 </div>
-                            </div>
-
-
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <h:commandButton action="#{administradorView.crearUsuario()}"  class="btn btn-primary btn-flat m-b-30 m-t-30" value="Registrarse"/>
+                                </div>
+                            </h:form>
                         </div>
                     </div>
-
-
                 </div>
-
             </section>
             <!-- /wrapper -->
         </section>
